@@ -1,0 +1,1 @@
+Design a landing page for a website called The AI Language that teaches about AI Agents, Model Context Protocol(MCP), Agent to Agent Protocol(A2A), agent development kit (ADK) etc... make it fun!

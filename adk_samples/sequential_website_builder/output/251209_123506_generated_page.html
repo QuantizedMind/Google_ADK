@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paying Guest Accommodation - Stay in Class</title>
+    <style>
+        /* Section 1: Global Design System */
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #F5A623;
+            --background-color: #F8F9FA;
+            --card-background-color: #FFFFFF;
+            --text-color: #333333;
+            --light-text-color: #666666;
+            --border-color: #E0E0E0;
+            --error-color: #D0021B;
+            --success-color: #28A745;
+            --base-spacing-unit: 8px;
+        }
+
+        body {
+            font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--text-color);
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        small, .small-text {
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: var(--light-text-color);
+        }
+
+        /* Layout and Spacing */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px; /* Mobile padding */
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 32px; /* Desktop padding */
+            }
+        }
+
+        .section-padding {
+            padding: 40px 0; /* Mobile padding */
+        }
+
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 80px 0; /* Desktop padding */
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 48px;
+            color: var(--text-color);
+        }
+        
+        .section-title.text-left {
+            text-align: left;
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 16px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .primary-button {
+            background-color: var(--primary-color);
+            color: var(--card-background-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .primary-button:hover {
+            background-color: #3A7ADF; /* Darkened Primary Color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .primary-button:active {
+            background-color: #2C5DA0; /* Further darkened Primary Color */
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        .secondary-outline-button {
+            background-color: transparent;
+            border: 2px solid var(--card-background-color);
+            color: var(--card-background-color);
+        }
+
+        .secondary-outline-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .secondary-outline-button:active {
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #3A7ADF; /* Darkened Primary Color */
+            text-decoration: underline;
+        }
+
+        /* Input Fields */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: calc(100% - 24px); /* Account for padding */
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            color: var(--text-color);
+            background-color: var(--card-background-color);
+            box-sizing: border-box; /* Include padding in width */
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Backgrounds */
+        .background-secondary-light {
+            background-color: rgba(245, 166, 35, 0.05); /* Light tint of Secondary Color */
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 767px) {
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            h3 { font-size: 20px; }
+            .hero-slogan { font-size: 48px; }
+            .hero-tagline { font-size: 18px; }
+        }
+
+        /* Component: Header Navigation */
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 64px;
+            background-color: var(--card-background-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .header-content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 16px;
+        }
+
+        .site-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .site-title a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .main-nav {
+            display: none; /* Hidden by default on mobile */
+        }
+
+        .nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-list a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 8px 0;
+            display: block;
+        }
+
+        .nav-list a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .menu-toggle {
+            display: block; /* Shown on mobile */
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 4px 8px;
+            z-index: 1001; /* Ensure it's above other content */
+        }
+        
+        .menu-toggle:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Mobile navigation specific styles */
+        @media (max-width: 767px) {
+            .header-content-wrapper {
+                padding: 0 16px;
+            }
+            .site-title {
+                font-size: 20px;
+            }
+            .main-nav {
+                position: absolute;
+                top: 64px; /* Below the header */
+                left: 0;
+                width: 100%;
+                background: var(--card-background-color);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                display: none; /* Initially hidden */
+                flex-direction: column;
+                z-index: 999; /* Below header, above content */
+                height: calc(100vh - 64px); /* Full height minus header */
+                overflow-y: auto; /* Scroll if content exceeds viewport */
+            }
+
+            body.nav-open .main-nav {
+                display: flex; /* Show when nav-open class is on body */
+            }
+
+            .nav-list {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .nav-list li {
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-list li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-list a {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .header-content-wrapper {
+                padding: 0 32px;
+            }
+            .main-nav {
+                display: block; /* Always visible on desktop */
+            }
+            .menu-toggle {
+                display: none; /* Hidden on desktop */
+            }
+        }
+
+        /* Component: Hero Section */
+        .hero-section {
+            min-height: 500px;
+            height: 100vh;
+            background-image: linear-gradient(45deg, #4A90E2, #3A7ADF); /* Gradient placeholder */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--card-background-color);
+            padding: 32px;
+            position: relative;
+            margin-top: 64px; /* Offset for fixed header */
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAKAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAD/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AJVAAAAAAAAAAAAAAAAAAAAAA//Z'); /* Small blue wave image */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8; /* Adjust opacity as needed */
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
+            padding: 32px;
+            border-radius: 8px;
+            z-index: 1; /* Ensure content is above background */
+        }
+
+        .hero-slogan {
+            font-size: 64px;
+            color: var(--card-background-color);
+            margin-bottom: 16px;
+        }
+
+        .hero-tagline {
+            font-size: 24px;
+            color: var(--card-background-color);
+            margin-bottom: 32px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        /* Component: Value Proposition Section */
+        .value-prop-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .value-prop-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .value-prop-item {
+            background-color: var(--card-background-color);
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .value-prop-heading {
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .value-prop-item p {
+            color: var(--light-text-color);
+            text-align: center;
+        }
+
+        /* Component: Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        @media (min-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .benefits-column {
+            background-color: var(--card-background-color);
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .benefits-persona-title {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--secondary-color);
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .benefits-list li {
+            font-size: 18px;
+            color: var(--text-color);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+
+        .benefits-list .icon {
+            margin-right: 12px;
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        /* Component: Amenities Section */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .amenity-card {
+            background-color: var(--card-background-color);
+            padding: 32px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .amenity-icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+
+        .amenity-title {
+            font-size: 20px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .amenity-card p {
+            color: var(--light-text-color);
+            font-size: 15px;
+        }
+
+        /* Component: Photo and Video Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: block;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        /* Component: Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            background-color: var(--card-background-color);
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--light-text-color);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-size: 15px;
+            color: var(--text-color);
+            text-align: right;
+        }
+
+        /* Component: Why Choose Us / Our Community Section */
+        .community-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .community-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+            .community-content {
+                text-align: left;
+            }
+            .community-content .section-title {
+                text-align: left;
+            }
+        }
+
+        .community-content {
+            text-align: center;
+        }
+
+        .community-content .section-title {
+            margin-bottom: 24px;
+        }
+
+        .community-content p {
+            color: var(--light-text-color);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .community-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        /* Component: FAQ Section */
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 16px 24px;
+            background-color: var(--card-background-color);
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--background-color);
+        }
+
+        .faq-question:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            margin-left: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .faq-question[aria-expanded="true"]::after {
+            content: '-';
+            transform: rotate(0deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            background-color: #FDFDFD;
+        }
+
+        .faq-answer[aria-hidden="false"] {
+            max-height: 200px; /* A sufficiently large value for smooth transition */
+            padding: 0 24px 16px;
+        }
+
+        .faq-answer p {
+            padding-top: 16px;
+            margin: 0;
+            color: var(--light-text-color);
+            font-size: 16px;
+        }
+
+        /* Component: Location Section */
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        @media (min-width: 768px) {
+            .location-content {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            display: block;
+            border: 0;
+        }
+
+        .location-info {
+            background-color: var(--card-background-color);
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .location-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .address-text {
+            font-size: 16px;
+            color: var(--text-color);
+            margin-bottom: 24px;
+        }
+
+        .landmarks-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .landmarks-list li {
+            font-size: 16px;
+            color: var(--light-text-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .landmarks-list li span {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        /* Component: Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .contact-form-container,
+        .contact-info-container {
+            background-color: var(--card-background-color);
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .contact-sub-title {
+            font-size: 24px;
+            color: var(--secondary-color);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 15px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .required-asterisk {
+            color: var(--error-color);
+            margin-left: 4px;
+        }
+
+        .error-message {
+            font-size: 13px;
+            color: var(--error-color);
+            margin-top: 4px;
+            display: block;
+            height: 18px; /* Reserve space for error message */
+        }
+
+        .form-message {
+            margin-top: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .contact-detail {
+            font-size: 16px;
+            color: var(--text-color);
+            margin-bottom: 12px;
+        }
+
+        .contact-detail a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icon {
+            font-size: 24px;
+            margin-right: 8px;
+            line-height: 1;
+        }
+
+        /* Component: Footer */
+        footer {
+            background-color: var(--light-text-color);
+            padding: 24px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            padding: 0 16px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: var(--card-background-color);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div class="header-content-wrapper">
+            <h1 class="site-title"><a href="#hero">Paying Guest Accommodation</a></h1>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-slogan">Stay in class.</h1>
+                <p class="hero-tagline">Your perfect home away from home for working women & college students.</p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="button primary-button">Inquire Now</a>
+                    <a href="#gallery" class="button secondary-outline-button">View Rooms</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="value-prop" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Experience the Best of Community Living & Convenience</h2>
+                <div class="value-prop-grid">
+                    <div class="value-prop-item">
+                        <h3 class="value-prop-heading">For the Independent Professional</h3>
+                        <p>Seeking a secure, peaceful retreat after a demanding day? Paying Guest Accommodation offers well-appointed rooms, reliable amenities, and a professional environment that lets you focus on your career while enjoying hassle-free living. Connect with like-minded women, and find your calm in the city's hustle.</p>
+                    </div>
+                    <div class="value-prop-item">
+                        <h3 class="value-prop-heading">For the Savvy Scholar</h3>
+                        <p>Dive into college life with ease! Our PG is a vibrant hub for students, offering super-fast Wi-Fi, dedicated study zones, and a fun, friendly atmosphere just steps from campus. Budget-friendly, all-inclusive, and packed with opportunities to make lifelong friends and memories.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="section-padding background-secondary-light">
+            <div class="container">
+                <h2 class="section-title">Why You'll Love Living With Us</h2>
+                <div class="benefits-grid">
+                    <div class="benefits-column">
+                        <h3 class="benefits-persona-title">For Working Women</h3>
+                        <ul class="benefits-list">
+                            <li><span class="icon" role="img" aria-label="Locked Padlock">🔒</span> Enhanced Security & Safety</li>
+                            <li><span class="icon" role="img" aria-label="Person in Lotus Position">🧘‍♀️</span> Peaceful & Professional Environment</li>
+                            <li><span class="icon" role="img" aria-label="Basket with Laundry">🧺</span> Laundry & Housekeeping Convenience</li>
+                            <li><span class="icon" role="img" aria-label="Salad Bowl">🥗</span> Nutritious Meal Plans Available</li>
+                            <li><span class="icon" role="img" aria-label="Light Bulb">💡</span> All-Inclusive Utilities</li>
+                        </ul>
+                    </div>
+                    <div class="benefits-column">
+                        <h3 class="benefits-persona-title">For College Students</h3>
+                        <ul class="benefits-list">
+                            <li><span class="icon" role="img" aria-label="High Voltage Sign">⚡</span> Super-Fast Wi-Fi for Studies</li>
+                            <li><span class="icon" role="img" aria-label="Books">📚</span> Dedicated Study Zones</li>
+                            <li><span class="icon" role="img" aria-label="Party Popper">🎉</span> Vibrant Social Community</li>
+                            <li><span class="icon" role="img" aria-label="Bus Stop">🚌</span> Proximity to Campus & Transport</li>
+                            <li><span class="icon" role="img" aria-label="Money Bag">💰</span> Budget-Friendly & Transparent Pricing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 48px;">
+                    <a href="#contact" class="button primary-button">Discover Your Perfect Stay</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="amenities" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Top-Noth Amenities for Your Comfort</h2>
+                <div class="amenities-grid">
+                    <div class="amenity-card">
+                        <span class="amenity-icon" role="img" aria-label="Wifi Signal">📶</span>
+                        <h3 class="amenity-title">High-Speed Wi-Fi</h3>
+                        <p>Stay connected 24/7 with robust internet for work, study, and leisure.</p>
+                    </div>
+                    <div class="amenity-card">
+                        <span class="amenity-icon" role="img" aria-label="Salad Bowl">🥗</span>
+                        <h3 class="amenity-title">Nutritious Meals</h3>
+                        <p>Healthy and delicious food options available daily, catering to various tastes.</p>
+                    </div>
+                    <div class="amenity-card">
+                        <span class="amenity-icon" role="img" aria-label="Soap and Bubbles">🧼</span>
+                        <h3 class="amenity-title">Laundry Services</h3>
+                        <p>Hassle-free laundry and cleaning support to keep your living space fresh.</p>
+                    </div>
+                    <div class="amenity-card">
+                        <span class="amenity-icon" role="img" aria-label="Sofa">🛋️</span>
+                        <h3 class="amenity-title">Comfortable Common Areas</h3>
+                        <p>Relax, socialize, and bond with fellow residents in our inviting lounges.</p>
+                    </div>
+                    <div class="amenity-card">
+                        <span class="amenity-icon" role="img" aria-label="Security Camera"> 📹 </span>
+                        <h3 class="amenity-title">24/7 Security</h3>
+                        <p>Your safety is our utmost priority with round-the-clock surveillance and personnel.</p>
+                    </div>
+                    <div class="amenity-card">
+                        <span class="amenity-icon" role="img" aria-label="Broom">🧹</span>
+                        <h3 class="amenity-title">Regular Cleaning</h3>
+                        <p>Enjoy a spotless and hygienic environment with our routine cleaning services.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section-padding background-secondary-light">
+            <div class="container">
+                <h2 class="section-title">A Glimpse Into Your Future Home</h2>
+                <div class="gallery-grid">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Modern PG room with comfortable bed and study desk" class="gallery-item">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Cozy common lounge area with sofas, perfect for relaxation" class="gallery-item">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Clean and bright dining area with ample seating" class="gallery-item">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Quiet study nook with a desk, chair, and good lighting" class="gallery-item">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Exterior view of the Paying Guest Accommodation building, well-maintained" class="gallery-item">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Happy residents socializing and interacting in a common area" class="gallery-item">
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Hear From Our Happy Residents</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Moving for my first job was daunting, but Paying Guest Accommodation made it so easy. It's safe, clean, and the meals are a lifesaver. Plus, I've met wonderful professional women here!"</p>
+                        <p class="testimonial-author"><strong>Sarah J.</strong>, Working Professional</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"As a student, finding a place close to campus with good Wi-Fi was essential. This PG has it all – great community, comfy rooms, and super supportive staff. Highly recommend!"</p>
+                        <p class="testimonial-author"><strong>Priya S.</strong>, College Student</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"My daughter stays here, and I couldn't be more relieved. The security is top-notch, and the management is incredibly responsive. It truly feels like a second home for her."</p>
+                        <p class="testimonial-author"><strong>Mr. Sharma</strong>, Concerned Guardian</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="section-padding background-secondary-light">
+            <div class="container community-layout">
+                <div class="community-content">
+                    <h2 class="section-title text-left">More Than Just a Stay, It's a Community!</h2>
+                    <p>At Paying Guest Accommodation, we believe living should be an experience, not just a place to sleep. We foster a lively, supportive environment where friendships blossom, and new adventures begin. From movie nights to study groups, every day is an opportunity to connect and make memories. Join our diverse family of working women and ambitious students!</p>
+                    <a href="#contact" class="button primary-button" style="margin-top: 24px;">Join Our Community!</a>
+                </div>
+                <div class="community-image">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Diverse group of happy residents laughing and interacting in a common area" class="responsive-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">What is included in the rent?</button>
+                        <div id="faq-answer-1" class="faq-answer" role="region" aria-hidden="true">
+                            <p>Rent typically includes accommodation, high-speed Wi-Fi, electricity, water, and cleaning services. Nutritious meal plans are an optional addition. Specific details can be discussed during your inquiry to tailor to your needs.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">What security measures are in place?</button>
+                        <div id="faq-answer-2" class="faq-answer" role="region" aria-hidden="true">
+                            <p>Your safety is paramount. We have 24/7 on-site security personnel, extensive CCTV surveillance in common areas, and secure access control systems to ensure the well-being and peace of mind of all residents.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">Is the location convenient for college students?</button>
+                        <div id="faq-answer-3" class="faq-answer" role="region" aria-hidden="true">
+                            <p>Absolutely! Our Paying Guest Accommodation is strategically located within very easy reach of several major colleges and universities, complemented by excellent public transport links nearby for a hassle-free commute.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">Can I schedule a visit to the PG?</button>
+                        <div id="faq-answer-4" class="faq-answer" role="region" aria-hidden="true">
+                            <p>Yes, we highly encourage prospective residents and their guardians to schedule a personal visit to experience our facilities firsthand. Please use our contact form or phone number to book an appointment at your convenience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Find Your Way Home</h2>
+                <div class="location-content">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.715367352729!2d77.03923361502479!3d28.69468208240509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d057777777777%3A0x7777777777777777!2sYour%20PG%20Name%20Here!5e0!3m2!1sen!2sin!4v1678901234567!5m2!1sen!2sin" 
+                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Paying Guest Accommodation Location Map"
+                                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+                    </div>
+                    <div class="location-info">
+                        <h3 class="location-title">Our Address:</h3>
+                        <p class="address-text">123, Classy Lane,<br>Knowledge City, New Delhi - 1100XX</p>
+                        <h3 class="location-title">Nearby Landmarks:</h3>
+                        <ul class="landmarks-list">
+                            <li><span role="img" aria-label="Books Icon">📚</span> University Campus (5 min walk)</li>
+                            <li><span role="img" aria-label="Hospital Icon">🏥</span> City Hospital (10 min drive)</li>
+                            <li><span role="img" aria-label="Metro Train">🚇</span> Metro Station (2 min walk)</li>
+                            <li><span role="img" aria-label="Shopping Bags">🛒</span> Shopping Mall (15 min walk)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding background-secondary-light">
+            <div class="container">
+                <h2 class="section-title">Get In Touch With Us!</h2>
+                <div class="contact-grid">
+                    <div class="contact-form-container">
+                        <h3 class="contact-sub-title">Send Us a Message</h3>
+                        <form id="inquiryForm" class="inquiry-form" novalidate>
+                            <div class="form-group">
+                                <label for="name">Your Name:<span class="required-asterisk">*</span></label>
+                                <input type="text" id="name" name="name" required aria-required="true">
+                                <p id="name-error" class="error-message"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email:<span class="required-asterisk">*</span></label>
+                                <input type="email" id="email" name="email" required aria-required="true">
+                                <p id="email-error" class="error-message"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Your Phone:</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message:<span class="required-asterisk">*</span></label>
+                                <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+                                <p id="message-error" class="error-message"></p>
+                            </div>
+                            <button type="submit" class="button primary-button">Submit Inquiry</button>
+                            <p id="form-message" class="form-message" aria-live="polite"></p>
+                        </form>
+                    </div>
+                    <div class="contact-info-container">
+                        <h3 class="contact-sub-title">Contact Details</h3>
+                        <p class="contact-detail"><strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></p>
+                        <p class="contact-detail"><strong>Email:</strong> <a href="mailto:info@pgaccommodation.com">info@pgaccommodation.com</a></p>
+                        <p class="contact-detail"><strong>Address:</strong> 123, Classy Lane, Knowledge City, New Delhi - 1100XX</p>
+                        <h3 class="contact-sub-title" style="margin-top: 32px;">Connect With Us</h3>
+                        <div class="social-links">
+                            <a href="https://instagram.com/pgaccommodation" target="_blank" rel="noopener noreferrer" aria-label="Our Instagram Profile"><span class="social-icon" role="img" aria-label="Camera Emoji">📷</span> Instagram</a>
+                            <a href="https://facebook.com/pgaccommodation" target="_blank" rel="noopener noreferrer" aria-label="Our Facebook Page"><span class="social-icon" role="img" aria-label="Thumbs Up Emoji">👍</span> Facebook</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">&copy; <span id="current-year"></span> Paying Guest Accommodation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = document.getElementById('main-header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                        
+                        // Close mobile menu after clicking a link
+                        if (document.body.classList.contains('nav-open')) {
+                            document.body.classList.remove('nav-open');
+                            document.querySelector('.menu-toggle').setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            const body = document.body;
+
+            menuToggle.addEventListener('click', () => {
+                body.classList.toggle('nav-open');
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const expanded = question.getAttribute('aria-expanded') === 'true' || false;
+                    question.setAttribute('aria-expanded', !expanded);
+                    const answer = question.nextElementSibling;
+                    answer.setAttribute('aria-hidden', expanded);
+                    if (expanded) {
+                        answer.style.maxHeight = '0';
+                        answer.style.padding = '0 24px 0';
+                    } else {
+                        // Set a height large enough to contain content, then let CSS transition
+                        answer.style.maxHeight = answer.scrollHeight + 'px'; 
+                        answer.style.padding = '0 24px 16px';
+                    }
+                });
+            });
+            
+            // Set initial state for FAQ answers
+            faqQuestions.forEach(question => {
+                const answer = question.nextElementSibling;
+                answer.style.maxHeight = '0';
+                answer.style.padding = '0 24px 0';
+            });
+
+
+            // Contact Form Validation
+            const inquiryForm = document.getElementById('inquiryForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const messageInput = document.getElementById('message');
+            const formMessage = document.getElementById('form-message');
+            const nameError = document.getElementById('name-error');
+            const emailError = document.getElementById('email-error');
+            const messageError = document.getElementById('message-error');
+
+            function clearErrorMessages() {
+                nameError.textContent = '';
+                emailError.textContent = '';
+                messageError.textContent = '';
+                formMessage.textContent = '';
+                formMessage.style.color = '';
+            }
+
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            inquiryForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                clearErrorMessages();
+
+                let isValid = true;
+
+                if (nameInput.value.trim() === '') {
+                    nameError.textContent = 'Name is required.';
+                    isValid = false;
+                }
+
+                if (emailInput.value.trim() === '') {
+                    emailError.textContent = 'Email is required.';
+                    isValid = false;
+                } else if (!isValidEmail(emailInput.value)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    isValid = false;
+                }
+
+                if (messageInput.value.trim() === '') {
+                    messageError.textContent = 'Message is required.';
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    formMessage.textContent = 'Thank you for your inquiry! We\'ll get back to you shortly.';
+                    formMessage.style.color = 'var(--success-color)';
+                    inquiryForm.reset();
+                } else {
+                    formMessage.textContent = 'Please correct the errors above.';
+                    formMessage.style.color = 'var(--error-color)';
+                }
+            });
+
+            // Footer dynamic year update
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>

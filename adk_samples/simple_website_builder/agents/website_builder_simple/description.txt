@@ -1,0 +1,1 @@
+This agent transforms a user's description of a website into a single, self-contained HTML file with modern, responsive CSS and JavaScript. It then saves the file using a descriptive name based on the user's request.

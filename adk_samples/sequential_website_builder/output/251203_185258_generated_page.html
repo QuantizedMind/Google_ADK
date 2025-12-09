@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI Language - Unlock the Future of AI</title>
+    <style>
+        /* Global Design System */
+        :root {
+            --primary-color: #6C63FF;
+            --secondary-color: #FFD700;
+            --background-color: #F8F8FF;
+            --accent-background-color: #FFFFFF;
+            --dark-background-color: #2C3E50;
+            --text-color: #333333;
+            --light-text-color: #666666;
+            --inverse-text-color: #ECF0F1;
+            --error-color: #E74C3C;
+
+            --font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            --h1-font-size: 48px;
+            --h1-line-height: 1.2;
+            --h2-font-size: 32px;
+            --h2-line-height: 1.3;
+            --h3-font-size: 24px;
+            --h3-line-height: 1.4;
+            --body-font-size: 18px;
+            --body-line-height: 1.6;
+            --small-text-font-size: 14px;
+            --small-text-line-height: 1.5;
+
+            --base-spacing-unit: 8px;
+
+            --button-transition: background-color 0.2s ease, transform 0.1s ease;
+            --link-transition: color 0.2s ease, text-decoration 0.2s ease;
+            --input-transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            margin: 0;
+            background-color: var(--background-color);
+            line-height: var(--body-line-height);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3 {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-top: 0;
+        }
+
+        h1 { font-size: var(--h1-font-size); line-height: var(--h1-line-height); }
+        h2 { font-size: var(--h2-font-size); line-height: var(--h2-line-height); }
+        h3 { font-size: var(--h3-font-size); line-height: var(--h3-line-height); }
+        p { font-size: var(--body-font-size); line-height: var(--body-line-height); }
+        small { font-size: var(--small-text-font-size); line-height: var(--small-text-line-height); }
+
+        .container {
+            max-width: 1024px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 calc(var(--base-spacing-unit) * 3); /* 24px */
+            box-sizing: border-box;
+        }
+
+        /* Button & Link Global Styles */
+        button {
+            background-color: var(--primary-color);
+            color: var(--accent-background-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--button-transition);
+            font-size: var(--body-font-size);
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+            color: var(--accent-background-color);
+        }
+
+        button:active {
+            background-color: #CCAA00; /* darker yellow */
+            transform: scale(0.98);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--link-transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        input[type="email"] {
+            border: 1px solid var(--light-text-color);
+            border-radius: 4px;
+            padding: calc(var(--base-spacing-unit) * 2);
+            font-size: 16px;
+            transition: var(--input-transition);
+            box-sizing: border-box;
+        }
+
+        input[type="email"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: var(--accent-background-color);
+            padding: calc(var(--base-spacing-unit) * 2) 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: calc(var(--base-spacing-unit) * 8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            max-width: 1024px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 calc(var(--base-spacing-unit) * 3);
+        }
+
+        .logo {
+            font-size: var(--h2-font-size);
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: calc(var(--base-spacing-unit) * 4);
+        }
+
+        nav a {
+            color: var(--text-color);
+            font-size: var(--body-font-size);
+            text-decoration: none;
+            padding: var(--base-spacing-unit) 0;
+            transition: var(--link-transition);
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 767px) {
+            header .container {
+                flex-direction: column;
+                gap: var(--base-spacing-unit);
+                height: auto;
+                padding-top: calc(var(--base-spacing-unit) * 2);
+                padding-bottom: calc(var(--base-spacing-unit) * 2);
+            }
+            header {
+                height: auto;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: calc(var(--base-spacing-unit) * 2);
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), #8E2DE2);
+            color: var(--accent-background-color);
+            padding: calc(var(--base-spacing-unit) * 10) 0;
+            text-align: center;
+        }
+
+        .hero-section .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 calc(var(--base-spacing-unit) * 3);
+        }
+
+        .hero-section h1 {
+            font-size: var(--h1-font-size);
+            font-weight: bold;
+            margin-bottom: calc(var(--base-spacing-unit) * 2);
+            color: var(--accent-background-color);
+        }
+
+        .hero-section .tagline {
+            font-size: var(--h2-font-size);
+            font-weight: normal;
+            margin-bottom: calc(var(--base-spacing-unit) * 5);
+            color: var(--accent-background-color);
+        }
+
+        .primary-cta {
+            padding: calc(var(--base-spacing-unit) * 3) calc(var(--base-spacing-unit) * 6);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 767px) {
+            .hero-section h1 {
+                font-size: 36px;
+            }
+            .hero-section .tagline {
+                font-size: 24px;
+            }
+            .primary-cta {
+                padding: calc(var(--base-spacing-unit) * 2) calc(var(--base-spacing-unit) * 4);
+                font-size: 18px;
+            }
+        }
+
+        /* Concept Introduction Sections */
+        .concept-section {
+            padding: calc(var(--base-spacing-unit) * 8) 0;
+            text-align: center;
+        }
+
+        #ai-agents-concept, #a2a-concept {
+            background-color: var(--background-color);
+        }
+
+        #mcp-concept, #adk-concept {
+            background-color: var(--accent-background-color);
+        }
+
+        .concept-section .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 calc(var(--base-spacing-unit) * 3);
+        }
+
+        .concept-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .concept-icon {
+            font-size: 80px;
+            margin-bottom: calc(var(--base-spacing-unit) * 3);
+            color: var(--primary-color);
+        }
+
+        .concept-section h2 {
+            font-size: var(--h2-font-size);
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: calc(var(--base-spacing-unit) * 2);
+        }
+
+        .concept-section p {
+            font-size: var(--body-font-size);
+            color: var(--text-color);
+            max-width: 700px;
+            margin: 0 auto calc(var(--base-spacing-unit) * 3);
+        }
+
+        .learn-more-link {
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 600; /* semi-bold */
+            text-decoration: none;
+            transition: var(--link-transition);
+        }
+
+        .learn-more-link:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 767px) {
+            .concept-icon {
+                font-size: 60px;
+            }
+            .concept-section h2 {
+                font-size: 28px;
+            }
+            .concept-section p {
+                font-size: 16px;
+            }
+            .learn-more-link {
+                font-size: 16px;
+            }
+        }
+
+        /* Main Call to Action (CTA) Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            padding: calc(var(--base-spacing-unit) * 8) 0;
+            text-align: center;
+            color: var(--accent-background-color);
+        }
+
+        .cta-section .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 calc(var(--base-spacing-unit) * 3);
+        }
+
+        .cta-section h2 {
+            font-size: var(--h1-font-size);
+            color: var(--accent-background-color);
+            margin-bottom: calc(var(--base-spacing-unit) * 5);
+        }
+
+        .secondary-cta {
+            padding: calc(var(--base-spacing-unit) * 3) calc(var(--base-spacing-unit) * 6);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 767px) {
+            .cta-section h2 {
+                font-size: 36px;
+            }
+            .secondary-cta {
+                padding: calc(var(--base-spacing-unit) * 2) calc(var(--base-spacing-unit) * 4);
+                font-size: 18px;
+            }
+        }
+
+        /* Newsletter Signup Form */
+        .newsletter-section {
+            background-color: var(--background-color);
+            padding: calc(var(--base-spacing-unit) * 8) 0;
+            text-align: center;
+        }
+
+        .newsletter-section .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 calc(var(--base-spacing-unit) * 3);
+        }
+
+        .newsletter-section h2 {
+            font-size: var(--h2-font-size);
+            color: var(--primary-color);
+            margin-bottom: calc(var(--base-spacing-unit) * 2);
+        }
+
+        .newsletter-section p {
+            font-size: var(--body-font-size);
+            color: var(--text-color);
+            margin-bottom: calc(var(--base-spacing-unit) * 4);
+        }
+
+        #newsletter-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: calc(var(--base-spacing-unit) * 2);
+            margin-top: calc(var(--base-spacing-unit) * 4);
+        }
+
+        #email-signup {
+            flex-grow: 1;
+            padding: calc(var(--base-spacing-unit) * 2);
+            font-size: 16px;
+            min-width: 250px;
+        }
+
+        .newsletter-submit-btn {
+            padding: calc(var(--base-spacing-unit) * 2) calc(var(--base-spacing-unit) * 4);
+            font-size: 18px;
+            font-weight: 600; /* semi-bold */
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: var(--small-text-font-size);
+            margin-top: var(--base-spacing-unit);
+            text-align: center;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            #newsletter-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            #email-signup {
+                min-width: unset;
+                width: 100%;
+            }
+            .newsletter-submit-btn {
+                width: 100%;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-background-color);
+            color: var(--inverse-text-color);
+            padding: calc(var(--base-spacing-unit) * 5) 0;
+            font-size: var(--small-text-font-size);
+        }
+
+        footer .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 calc(var(--base-spacing-unit) * 3);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-legal {
+            margin-bottom: 0;
+        }
+
+        .footer-legal p {
+            margin-bottom: 0; /* Override default p margin-bottom */
+        }
+
+        .legal-links {
+            margin-top: var(--base-spacing-unit);
+        }
+
+        .legal-links a {
+            color: var(--inverse-text-color);
+            text-decoration: none;
+            transition: var(--link-transition);
+        }
+
+        .legal-links a:hover {
+            text-decoration: underline;
+            color: var(--secondary-color);
+        }
+
+        .separator {
+            margin: 0 var(--base-spacing-unit);
+        }
+
+        .social-links {
+            display: flex;
+            gap: calc(var(--base-spacing-unit) * 3);
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(var(--base-spacing-unit) * 4);
+            height: calc(var(--base-spacing-unit) * 4);
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--accent-background-color);
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-background-color);
+        }
+
+        @media (max-width: 767px) {
+            .footer-content {
+                flex-direction: column;
+                gap: calc(var(--base-spacing-unit) * 3);
+            }
+            .footer-legal p {
+                margin-bottom: var(--base-spacing-unit); /* Add some space between copyright and links on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">The AI Language</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <h1>Unlock the Future of AI: The AI Language</h1>
+                <p class="tagline">Dive into AI Agents, MCP, A2A, & ADK with fun and clarity!</p>
+                <button class="primary-cta">Start Your AI Journey!</button>
+            </div>
+        </section>
+
+        <section id="ai-agents-concept" class="concept-section">
+            <div class="container">
+                <div class="concept-content">
+                    <div class="concept-icon">🤖</div>
+                    <h2>AI Agents: Your Digital Sidekicks</h2>
+                    <p>Imagine intelligent programs that can reason, plan, and act autonomously to achieve goals. From simple task automation to complex problem-solving, AI Agents are the building blocks of a smarter future. Learn how they perceive their environment and make decisions!</p>
+                    <a href="#learn-more-agents" class="learn-more-link">Learn More about AI Agents</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="mcp-concept" class="concept-section">
+            <div class="container">
+                <div class="concept-content">
+                    <div class="concept-icon">🧠</div>
+                    <h2>Model Context Protocol (MCP): The AI's Memory Bank</h2>
+                    <p>MCP is the secret sauce that allows AI models to retain and understand context across multiple interactions. It's how your AI remembers what you just said, enabling seamless and coherent conversations and tasks. Discover how context empowers AI!</p>
+                    <a href="#learn-more-mcp" class="learn-more-link">Learn More about MCP</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="a2a-concept" class="concept-section">
+            <div class="container">
+                <div class="concept-content">
+                    <div class="concept-icon">🤝</div>
+                    <h2>Agent to Agent Protocol (A2A): AI's Social Network</h2>
+                    <p>Just like humans, AI Agents can collaborate! A2A defines the rules for how different AI agents communicate, share information, and work together to solve complex problems far beyond what a single agent could achieve. Explore AI teamwork!</p>
+                    <a href="#learn-more-a2a" class="learn-more-link">Learn More about A2A</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="adk-concept" class="concept-section">
+            <div class="container">
+                <div class="concept-content">
+                    <div class="concept-icon">🛠️</div>
+                    <h2>Agent Development Kit (ADK): Build Your Own AI</h2>
+                    <p>Ready to create your own intelligent agents? The ADK provides the tools, libraries, and frameworks you need to design, build, and deploy powerful AI Agents with ease. Get hands-on and start innovating today!</p>
+                    <a href="#learn-more-adk" class="learn-more-link">Learn More about ADK</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Deep Dive into The AI Language?</h2>
+                <button class="secondary-cta">Explore All Topics</button>
+            </div>
+        </section>
+
+        <section class="newsletter-section">
+            <div class="container">
+                <h2>Stay Updated with The AI Language!</h2>
+                <p>Get the latest insights, tutorials, and news directly in your inbox.</p>
+                <form id="newsletter-form">
+                    <input type="email" id="email-signup" placeholder="Your email address" required aria-label="Email Address">
+                    <button type="submit" class="newsletter-submit-btn">Subscribe</button>
+                    <div id="newsletter-message" class="error-message" aria-live="polite"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-legal">
+                    <p>&copy; <span id="current-year"></span> The AI Language. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <span class="separator">|</span>
+                        <a href="#terms">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://twitter.com/TheAILanguage" target="_blank" aria-label="Twitter"><span class="social-icon">X</span></a>
+                    <a href="https://linkedin.com/company/TheAILanguage" target="_blank" aria-label="LinkedIn"><span class="social-icon">in</span></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Hero CTA smooth scroll
+            const heroCtaButton = document.querySelector('.primary-cta');
+            heroCtaButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetSection = document.getElementById('ai-agents-concept');
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            // Main CTA (secondary-cta) navigation
+            const secondaryCtaButton = document.querySelector('.secondary-cta');
+            secondaryCtaButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Placeholder for actual navigation or deeper content
+                alert('Navigating to All Topics! (This is a placeholder action)');
+                window.location.href = '/courses'; // Example: navigate to a courses page
+            });
+
+            // Newsletter form validation
+            const newsletterForm = document.getElementById('newsletter-form');
+            const emailInput = document.getElementById('email-signup');
+            const newsletterMessage = document.getElementById('newsletter-message');
+
+            newsletterForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const email = emailInput.value;
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+                    newsletterMessage.style.color = 'var(--error-color)';
+                    newsletterMessage.textContent = 'Please enter a valid email address.';
+                } else {
+                    newsletterMessage.style.color = 'var(--primary-color)';
+                    newsletterMessage.textContent = 'Thank you for subscribing!';
+                    emailInput.value = ''; // Clear the input field
+                }
+            });
+        });
+    </script>
+</body>
+</html>

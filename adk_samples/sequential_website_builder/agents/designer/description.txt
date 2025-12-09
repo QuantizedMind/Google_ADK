@@ -1,0 +1,1 @@
+Acts as an AI UI/UX designer, translating a requirements document into a detailed visual specification. It describes the layout, design system, and individual components in a Markdown format, creating a precise blueprint for a front-end code generation agent.
