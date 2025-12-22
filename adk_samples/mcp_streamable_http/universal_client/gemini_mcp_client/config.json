@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "server1": {
+      "type": "http",
+      "url": "http://localhost:3000/mcp/"
+    },
+    "server2": {
+      "type": "http",
+      "url": "http://localhost:3001/mcp/"
+    },
+    "server3": {
+      "type": "http",
+      "url": "http://localhost:3002/mcp/"
+    },
+    "terminal": {
+        "type": "stdio",
+        "command": "uv",
+        "args": [
+            "--directory", "/Users/Roshan_Jangid/Library/CloudStorage/OneDrive-McKinsey&Company/Desktop/Git_Repos/Google_ADK/adk_samples/mcp_streamable_http/stdio_server",
+            "run", 
+            "terminal_server.py"
+        ]
+    }
+  }
+}

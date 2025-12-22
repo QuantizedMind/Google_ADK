@@ -1,0 +1,32 @@
+[
+    {
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "rating": 4.8
+    },
+    {
+        "title": "1984",
+        "author": "George Orwell",
+        "rating": 4.7
+    },
+    {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "rating": 4.6
+    },
+    {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "rating": 4.9
+    },
+    {
+        "title": "Dune",
+        "author": "Frank Herbert",
+        "rating": 4.7
+    },
+    {
+        "title": "The Lord of the Rings",
+        "author": "J.R.R. Tolkien",
+        "rating": 4.9
+    }
+]

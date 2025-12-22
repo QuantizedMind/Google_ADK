@@ -1,0 +1,4 @@
+-e Results of calculations with 12 and 5:
+Addition: 12 + 5 = 17
+Subtraction: 12 - 5 = 7
+Multiplication: 12 x 5 = 60
